@@ -1,0 +1,28 @@
+#!/usr/bin/dash
+# vim:ft=bash
+
+black=#1e2326
+green=#a7c080
+greenblue=#83c092
+white=#fffbef
+grey=#9da9ad
+blue=#7fbbb3
+red=#e67e80
+yellow=#dbbc7f
+orange=#e69875
+pink=#d699b6
+
+fg=#d3c6aa
+
+# black2=#5c6a72
+# green2=#35a77c
+# white2=
+# grey2=
+# blue2=
+# red2=
+# black_bg=#1e2326
+# green_bg=#3c
+# white_bg=
+# grey_bg=
+# blue_bg=
+# red_bg=

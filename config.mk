@@ -4,7 +4,7 @@ VERSION = 6.5
 # Customize below to fit your system
 
 # paths
-PREFIX = /usr/local
+PREFIX = /home/sean/.local
 MANPREFIX = ${PREFIX}/share/man
 
 X11INC = /usr/X11R6/include
@@ -29,10 +29,10 @@ FREETYPEINC = /usr/include/freetype2
 #KVMLIB = -lkvm
 
 # Uncomment this for the alpha patch and the winicon patch (BAR_ALPHA_PATCH, BAR_WINICON_PATCH)
-#XRENDER = -lXrender
+XRENDER = -lXrender
 
 # Uncomment this for the mdpcontrol patch / MDPCONTROL_PATCH
-#MPDCLIENT = -lmpdclient
+MPDCLIENT = -lmpdclient
 
 # Uncomment for the pango patch / BAR_PANGO_PATCH
 #PANGOINC = `pkg-config --cflags xft pango pangoxft`
@@ -49,7 +49,7 @@ FREETYPEINC = /usr/include/freetype2
 #XCBLIBS = -lX11-xcb -lxcb -lxcb-res
 
 # This is needed for the winicon and tagpreview patches / BAR_WINICON_PATCH / BAR_TAGPREVIEW_PATCH
-#IMLIB2LIBS = -lImlib2
+IMLIB2LIBS = -lImlib2
 
 # Uncomment for the banish patch / BANISH_PATCH (for mouse related features)
 #XILIB = `pkg-config --libs xi xfixes`
