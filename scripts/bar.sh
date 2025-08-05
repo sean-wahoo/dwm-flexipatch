@@ -8,9 +8,9 @@ cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg | awk 'NR==1')
   color=$green
 
-  if [ $cpu_val -gt 40 ]; then
+  if [[ $cpu_val -gt 40 ]]; then
     color=$yellow
-  elif [ $cpu_val -gt 80 ]; then
+  elif [[ $cpu_val -gt 80 ]]; then
     color=$red
   fi
 
