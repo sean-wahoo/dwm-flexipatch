@@ -62,27 +62,41 @@ mem() {
 }
 
 internet() {
-  interface="wlan0"
-
   output=""
 
+  wireless=($(ip -br addr show | awk '/^wlan/{print $1, $3}'))
+  wired=($(ip -br addr show | awk '/^(enp|eth)/{print $1, $3}'))
+
+
   if [ "$IS_WORKTOP" -eq "1" ]; then
-    interface="enp0s13f0u2u4u4"
-    vpn_status=$(ip -br addr show "p81")
-    if [[ $vpn_status == "p81"* ]]; then
+    vpn_status=$(ip -br addr show "p81" | awk '{print $1}')
+    if [[ $vpn_status == "p81" ]]; then
       output="^c$pink^VPN + "
     fi
-    output+="^c$greenblue^$interface "
-  else
+  fi
+
+  interface=""
+  ip=""
+  ssid=""
+
+  if (( ${#wireless[@]} != 0 )); then
+    interface="${wireless[0]}"
+    ip="${wireless[1]}"
     ssid=$(iw dev "$interface" info | grep -Po '(?<=ssid).*')
   fi
 
-  ip=$(ip -br addr show "$interface" | awk '{print $3}')
+  if (( ${#wired[@]} != 0 )); then
+    interface="${wired[0]}"
+    ip="${wired[1]}"
+    ssid=""
+  fi
 
   case "$(cat "/sys/class/net/$interface/operstate" 2>/dev/null)" in
     up) 
-      if [ "$IS_WORKTOP" -eq "1" ]; then
-        printf "$output- %s" "^c$fg^$ip" 
+
+      if [[ $ssid == "" ]]; then
+        output+="^c$greenblue^%s - %s" 
+        printf "$output" "$interface" "^c$fg^$ip" 
       else
         output+="^c$greenblue^%s - %s" 
         printf "$output" "$ssid" "^c$fg^$ip" 
@@ -96,8 +110,7 @@ internet() {
 }
 
 volume() {
-  percentage=$(amixer sget Master | awk -F"[][]" '/Left:/ { print $2 }')
-  # output_type=$()
+  percentage=$(amixer sget Master | awk -F"[][]" '/(Left|Right|Mono):/ { print $2; exit; }')
   printf "^c$orange^VOL - %s" "^c$fg^$percentage"
 }
 
