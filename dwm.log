@@ -1,0 +1,5 @@
+(electron) Sending uncompressed crash reports is deprecated and will be removed in a future version of Electron. Set { compress: true } to opt-in to the new behavior. Crash reports will be uploaded gzipped, which most crash reporting servers support.
+[3147858:0807/165754.128596:ERROR:content/browser/browser_main_loop.cc:278] Gtk: gtk_widget_add_accelerator: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+[3147858:0807/165754.128951:ERROR:content/browser/browser_main_loop.cc:278] Gtk: gtk_widget_add_accelerator: assertion 'GTK_IS_ACCEL_GROUP (accel_group)' failed
+Fontconfig warning: using without calling FcInit()
+[ERROR error_support::handling] suggest-unexpected: Error executing SQL: interrupted (context: <none>)
