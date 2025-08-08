@@ -97,7 +97,7 @@ static const int statusmon               = 0;
 static const int statusmon               = 'A';
 #endif // BAR_STATUSALLMONS_PATCH | BAR_STATICSTATUS_PATCH
 #if BAR_STATUSPADDING_PATCH
-static const int horizpadbar             = 1;   /* horizontal padding for statusbar */
+static const int horizpadbar             = 6;   /* horizontal padding for statusbar */
 static const int vertpadbar              = 2;   /* vertical padding for statusbar */
 #endif // BAR_STATUSPADDING_PATCH
 #if BAR_STATUSBUTTON_PATCH
@@ -162,7 +162,7 @@ static const int quit_empty_window_count = 0;   /* only allow dwm to quit if no 
 #if BAR_EXTRASTATUS_PATCH
 static const char statussep              = ';'; /* separator between status bars */
 #endif // BAR_EXTRASTATUS_PATCH
-#if BAdR_TABGROUPS_PATCH
+#if BAR_TABGROUPS_PATCH
 #if MONOCLE_LAYOUT
 static void (*bartabmonfns[])(Monitor *) = { monocle /* , customlayoutfn */ };
 #else
@@ -170,17 +170,13 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #endif // MONOCLE_LAYOUT
 #endif // BAR_TABGROUPS_PATCH
 #if BAR_PANGO_PATCH
-static const char font[]                 = "monospace 10";
+static const char font[]                 = "CozetteVector Nerd Font:size=14";
 #else
-// static const char *fonts[]               = { "monospace:size=10" };
-static const char *fonts[]               = { "CozetteVector:size=17" };
+static const char *fonts[]               = { "CozetteVector Nerd Font:size=14" };
 #endif // BAR_PANGO_PATCH
-static const char dmenufont[]            = "CozetteVector:size=17";
+static const char dmenufont[]            = "CozetteVector Nerd Font:size=14";
 
 static char c000000[]                    = "#000000"; // placeholder value
-static char eg_bg[] = "#2d353b";
-static char eg_fg[] = "#d3c6aa";
-static char eg_green[] = "#a7c080";
 
 static char normfgcolor[]                = "#bbbbbb";
 static char normbgcolor[]                = "#222222";
@@ -484,15 +480,10 @@ static char tagicons[][NUMTAGS][MAX_TAGLEN] =
 static char *tagicons[][NUMTAGS] =
 #endif // NAMETAG_PATCH
 {
-	[DEFAULT_TAGS]        = { "1", "2", "3", "4", "5" },
-	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E" },
-	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>" },
+	[DEFAULT_TAGS]        = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
+	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
+	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
 };
-// {
-// 	[DEFAULT_TAGS]        = { "1", "2", "3", "4", "5", "6", "7", "8", "9" },
-// 	[ALTERNATIVE_TAGS]    = { "A", "B", "C", "D", "E", "F", "G", "H", "I" },
-// 	[ALT_TAGS_DECORATION] = { "<1>", "<2>", "<3>", "<4>", "<5>", "<6>", "<7>", "<8>", "<9>" },
-// };
 
 #if BAR_TAGGRID_PATCH
 /* grid of tags */
