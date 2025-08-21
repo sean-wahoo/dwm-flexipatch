@@ -1,5 +1,7 @@
 *.o
 dwm
 dwm-msg
+.ccls-cache/*
+.ccls-cache/@*
 # config.h
 # patches.h

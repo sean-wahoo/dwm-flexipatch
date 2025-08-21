@@ -1,3 +1,4 @@
+#include <stdarg.h>
 /* See LICENSE file for copyright and license details. */
 
 /* Helper macros for spawning commands */
@@ -898,6 +899,18 @@ static const char *dmenucmd[] = {
 	NULL
 };
 static const char *termcmd[]  = { "alacritty", NULL };
+static const char *windowcmd[] = {
+  "rofi",
+  "-show",
+  "window"
+};
+// static const char *rofi(char *type) {
+//   char buf[32];
+//   snprintf(buf, sizeof buf, "rofi -show %s", type);
+//   return buf;
+//   // const size_t MAX_BYTES = 4096;
+//   // return snprintf(, MAX_BYTES, "rofi -show %s ");
+// }
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -1027,6 +1040,7 @@ ResourcePref resources[] = {
 
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
+	{ MODKEY|ShiftMask,                       XK_w,          spawn,        {.v = windowcmd},          },
 	#if KEYMODES_PATCH
 	{ MODKEY,                       XK_Escape,     setkeymode,             {.ui = COMMANDMODE} },
 	#endif // KEYMODES_PATCH
