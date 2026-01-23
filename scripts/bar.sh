@@ -4,11 +4,10 @@ interval=1
 
 . ~/.config/dwm/themes/everforest
 
-IS_WORKTOP=0
+IS_BOX=0
 
-if [[ $(hostnamectl hostname) -eq "worktop" ]]; then
-  echo "yuh"
-  IS_WORKTOP=1
+if [[ $(hostnamectl hostname) -eq "box" ]]; then
+  IS_BOX=1
 fi
 
 cpu() {
@@ -29,7 +28,7 @@ battery() {
 
   charge_dev=""
 
-  [[ "$IS_WORKTOP" -eq 1 ]] && charge_dev="ADP1" || charge_dev="ACAD"
+  [[ "$IS_BOX" -eq 1 ]] && charge_dev="none" || charge_dev="BAT1"
 
   is_charging=$(cat "/sys/class/power_supply/$charge_dev/online")
 
@@ -52,8 +51,10 @@ battery() {
       icon="󰁹"
     fi
   fi
-
-  printf "^c$color^%s %s" "$icon" "^c$fg^$capacity"
+  
+  if [[ "$IS_BOX" -eq 0 ]] then
+    printf "^c$color^%s %s" "$icon" "^c$fg^$capacity"
+  fi
 }
 
 mem() {
@@ -66,14 +67,6 @@ internet() {
 
   wireless=($(ip -br addr show | awk '/^wlan/{print $1, $3}'))
   wired=($(ip -br addr show | awk '/^(enp|eth)/{print $1, $3}'))
-
-
-  if [ "$IS_WORKTOP" -eq "1" ]; then
-    vpn_status=$(ip -br addr show "p81" | awk '{print $1}')
-    if [[ $vpn_status == "p81" ]]; then
-      output="^c$pink^VPN + "
-    fi
-  fi
 
   interface=""
   ip=""
@@ -110,7 +103,7 @@ internet() {
 }
 
 volume() {
-  percentage=$(amixer sget Master | awk -F"[][]" '/(Left|Right|Mono):/ { print $2; exit; }')
+  percentage=$(amixer sget Master | awk -F"[][]" '/(Left|Right|Mono):\s/ { print $2; exit; }')
   printf "^c$orange^VOL - %s" "^c$fg^$percentage"
 }
 
